@@ -1,11 +1,5 @@
-from flask import Flask
-from blueprints import auth
+from app import create_app
 
-app = Flask(__name__)
-
-# 设置表单交互密钥
-app.secret_key = "Lee Blog"
-
-app.register_blueprint(auth.auth_blueprints,url_prefix="/auth")
+app = create_app()
 app.run(debug=True)
 
