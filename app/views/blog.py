@@ -3,6 +3,7 @@
 # @Author  : Lee
 # @Project ：blog-master 
 # @File    : blog.py
+from flask_login import login_required, current_user
 
 # -*- coding: utf-8 -*-
 # @Time    : 2024/03/19 15:40
@@ -16,6 +17,8 @@ from flask import Blueprint, render_template
 blog_blueprints = Blueprint("blog", __name__)
 
 @blog_blueprints.route("/index", methods=["GET","POST"])
-def login():
+@login_required
+def index():
     # 跳转管理界面
     return render_template('blog/index.html')
+

@@ -9,7 +9,6 @@ from app.extensions import db, login_manager, csrf, mail,debug_tool
 from app.views.admin import admin_blueprints
 from app.views.auth import auth_blueprints
 from flask import Flask
-
 from app.views.blog import blog_blueprints
 
 
