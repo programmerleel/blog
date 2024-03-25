@@ -5,7 +5,7 @@
 # @Software: PyCharm
 
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, BooleanField, SubmitField
+from wtforms import StringField, PasswordField, BooleanField, SubmitField,SelectMultipleField
 from wtforms.validators import DataRequired, Length
 
 # 登陆表单
@@ -18,5 +18,6 @@ class LoginForm(FlaskForm):
 
 class BlogForm(FlaskForm):
     title = StringField('标题', validators=[DataRequired(), Length(1, 40)])
-    category = PasswordField('类别', validators=[DataRequired(), Length(1, 20)])
+    category = SelectMultipleField(
+        label='类别', choices=[('Military', '军事'), ('New', '新闻'), ('Society', '社会'), ('Technology', '科技')])
     submit = SubmitField('发布')

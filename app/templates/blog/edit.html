@@ -9,50 +9,20 @@
     <!--    <div class="container">-->
     <div class="container">
         <div class="row">
+            {{ blog_form.hidden_tag() }}
+            {{ blog_form.title.label }}&nbsp&nbsp{{ blog_form.title(class="form-control",placeholder="请输入标题") }}&nbsp&nbsp
+            {{ blog_form.category.label }}&nbsp&nbsp{{ blog_form.category(id="category_select") }}&nbsp&nbsp
+            {{ blog_form.submit(class="btn btn btn-outline-primary") }}
 
-            <!--        <div class="form-group mb-2">-->
-            <!--            <label for="staticEmail2" class="sr-only">Email</label>-->
-            <!--            <input type="text" readonly class="form-control-plaintext" id="staticEmail2" value="email@example.com">-->
-            <!--        </div>-->
-            <div class="form-group mx-sm-3 mb-2">
-                <label for="inputPassword2" class="sr-only">Password</label>
-                <input type="password" class="form-control" id="inputPassword2" placeholder="Password">
-            </div>
-            <div class="dropdown">
-                <button class="btn btn-secondary dropdown-toggle" type="button" data-toggle="dropdown"
-                        aria-expanded="false">
-                    Dropdown button
-                </button>
-                <div class="dropdown-menu">
-                    <a class="dropdown-item" href="#">Action</a>
-                    <a class="dropdown-item" href="#">Another action</a>
-                    <a class="dropdown-item" href="#">Something else here</a>
-                </div>
-            </div>
-            <!--            <div class="form-group mx-sm-3 mb-2">-->
-            <!--                <label for="inputPassword2" class="sr-only">Password</label>-->
-            <!--                <input type="password" class="form-control" id="inputPassword2" placeholder="Password">-->
-            <!--            </div>-->
-            <button type="submit" class="btn btn-primary mb-2">Confirm identity</button>
 
-            <!--        <label>{{ blog_form.title.label }}</label>-->
-            <!--        &lt;!&ndash;        <div>&ndash;&gt;-->
-            <!--        &lt;!&ndash;                        <input type="text" class="form-control" id="username" placeholder="请输入用户名！">&ndash;&gt;-->
-            <!--        {{ blog_form.title(placeholder="请输入标题") }}-->
-            <!--        &lt;!&ndash;        </div>&ndash;&gt;-->
-            <!--        <label>{{ blog_form.category.label }}</label>-->
-            <!--        &lt;!&ndash;        <div>&ndash;&gt;-->
-            <!--        &lt;!&ndash;                        <input type="text" class="form-control" id="username" placeholder="请输入用户名！">&ndash;&gt;-->
-            <!--        {{ blog_form.title(placeholder="请输入类别") }}-->
-            <!--        </div>-->
         </div>
     </div>
-    <!--    </div>-->
+                <br>
+                <br>
     <div id="editor">
         <textarea style="display:none;"></textarea>
     </div>
-    <!--                <button type="submit" class="btn btn-primary"></button>-->
-    {{ blog_form.submit(class="btn btn-primary") }}
+
 </form>
 
 
@@ -64,9 +34,16 @@
 <script>
     var editor = editormd("editor", {
         width: "90%",
-        height: "800px",
+        height: "750px",
         markdown: "",
         path: "../static/editor.md/lib/"
+    });
+
+</script>
+<script>
+    $('#category_select').select2({
+        placeholder: '请选择',
+        width: 30px,
     });
 </script>
 {% endblock %}
