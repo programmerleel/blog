@@ -4,21 +4,44 @@
 <br>
 <!--    <div class="container">-->
 <form role="form" class="form-inline" action="/admin/edit" method="post">
-    {{ blog_form.csrf_token }}
 
     <!--    <div class="container">-->
     <div class="container">
         <div class="row">
-            {{ blog_form.hidden_tag() }}
-            {{ blog_form.title.label }}&nbsp&nbsp{{ blog_form.title(class="form-control",placeholder="请输入标题") }}&nbsp&nbsp
-            {{ blog_form.category.label }}&nbsp&nbsp{{ blog_form.category(id="category_select") }}&nbsp&nbsp
-            {{ blog_form.submit(class="btn btn btn-outline-primary") }}
 
+            <!--            <div class="form-row align-items-center">-->
 
+            <div class="col-auto">
+                <label class="sr-only" for="inlineFormInputGroup">Username</label>
+                <div class="input-group mb-2">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text">@</div>
+                    </div>
+                    <input type="text" class="form-control" id="inlineFormInputGroup" placeholder="Username">
+                </div>
+            </div>
+
+            <select class="form-control" id="category_select">
+                <option value="">-----单选-----</option>
+                <option value="1">OPS-COFFEE-A</option>
+                <option value="2">OPS-COFFEE-B</option>
+                <option value="3">OPS-COFFEE-C</option>
+                <option value="4">OPS-COFFEE-D</option>
+                <option value="5">OPS-COFFEE-E</option>
+                <option value="6">OPS-COFFEE-F</option>
+                <option value="7">OPS-COFFEE-G</option>
+            </select>
+
+            <div class="col-auto">
+                <button type="submit" class="btn btn-primary mb-2">Submit</button>
+            </div>
         </div>
+
+
     </div>
-                <br>
-                <br>
+    <!--    </div>-->
+    <br>
+    <br>
     <div id="editor">
         <textarea style="display:none;"></textarea>
     </div>
@@ -40,10 +63,9 @@
     });
 
 </script>
+
 <script>
-    $('#category_select').select2({
-        placeholder: '请选择',
-        width: 30px,
-    });
+    var select = $('#category_select').select2();
 </script>
+
 {% endblock %}

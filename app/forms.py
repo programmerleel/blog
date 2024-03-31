@@ -14,10 +14,3 @@ class LoginForm(FlaskForm):
     password = PasswordField('密码', validators=[DataRequired(), Length(1, 128)])
     remember = BooleanField('记住我！')
     submit = SubmitField('登录')
-
-
-class BlogForm(FlaskForm):
-    title = StringField('标题', validators=[DataRequired(), Length(1, 40)])
-    category = SelectMultipleField(
-        label='类别', choices=[('Military', '军事'), ('New', '新闻'), ('Society', '社会'), ('Technology', '科技')])
-    submit = SubmitField('发布')

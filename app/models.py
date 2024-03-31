@@ -39,6 +39,7 @@ class Blog(db.Model):
 class Category(db.Model):
     id = db.Column(db.INTEGER, nullable=False,primary_key=True, autoincrement=True)
     name = db.Column(db.String(20), nullable=False)
+    number = db.Column(db.INTEGER, nullable=False)
 
 #回复类
 class Reply(db.Model):
