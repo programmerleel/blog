@@ -3,36 +3,102 @@
 {% block row %}
 <br>
 <div class="row">
+    <form action="/admin/add_category" method="post" class="form-inline">
+        <div class="col-auto">
+            <label class="sr-only" for="category"></label>
+            <div class="input-group mb-2">
+                <div class="input-group-prepend">
+                    <div class="input-group-text"></div>
+                </div>
+                <input type="text" class="form-control" id="category" name="category" placeholder="类别名称">
+            </div>
+        </div>
+        <div class="col-auto">
+            <button type="submit" class="btn btn-primary mb-2">添加</button>
+        </div>
+        <p style="color:red">&nbsp{{ msg }}&nbsp</p>
+    </form>
 
     <table class="table table-hover">
         <thead>
         <tr>
-            <th scope="col">#</th>
-            <th scope="col">First</th>
-            <th scope="col">Last</th>
-            <th scope="col">Handle</th>
+            <th scope="col">ID</th>
+            <th scope="col">类别名称</th>
+            <th scope="col">文章数量</th>
+            <th scope="col">处理方式</th>
         </tr>
         </thead>
         <tbody>
+        {% for category in categories %}
         <tr>
-            <th scope="row">1</th>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
+            <th scope="row">{{ category.id }}</th>
+            <td>{{ category.name }}</td>
+            <td>{{ category.number }}</td>
+            <td>
+                <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
+                    <button type="button" id="alter_category" value="{{ category.id }}" class="btn btn-secondary">修改
+                    </button>
+
+                    <button type="button" id="delete_category" value="{{ category.id }}" class="btn btn-secondary">
+                        删除
+                    </button>
+                </div>
+            </td>
         </tr>
-        <tr>
-            <th scope="row">2</th>
-            <td>Jacob</td>
-            <td>Thornton</td>
-            <td>@fat</td>
-        </tr>
-        <tr>
-            <th scope="row">3</th>
-            <td colspan="2">Larry the Bird</td>
-            <td>@twitter</td>
-        </tr>
+        {% endfor %}
         </tbody>
     </table>
 </div>
 {% endblock %}
 
+{% block edit_script %}
+<script type="text/javascript">
+    $('#alter_category').on('click',
+            function() {
+                var id = $("#alter_category").val();
+                var name=prompt("类别名称","请输入类别名称");
+                var data = {
+                data: JSON.stringify({
+                'id': id,
+                'name': name
+                }),
+             }
+            $.ajax({
+                type: "POST",
+                dataType: "json",
+                url: "alter_category",
+                data: data,
+
+
+            })
+setTimeout(function() {
+            location.reload();
+        }, 1);
+
+        })
+
+
+        $('#delete_category').on('click',
+            function() {
+            var r=confirm("按下按钮");
+                var id = $("#alter_category").val();
+                var data = {
+                data: JSON.stringify({
+                'id': id,
+                }),
+             }
+             if(r == true){
+            $.ajax({
+                type: "POST",
+                dataType: "json",
+                url: "delete_category",
+                data: data,
+            })
+            }
+setTimeout(function() {
+            location.reload();
+        }, 1);
+        })
+</script>
+
+{% endblock %}

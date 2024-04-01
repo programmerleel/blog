@@ -29,8 +29,13 @@ def login():
 @admin_blueprints.route("/edit", methods=["GET","POST"])
 @login_required
 def edit():
-        # return render_template('admin/index.html', current_user=current_user)
-    return render_template('blog/edit.html', current_user=current_user)
+    categories = Category.query.all()
+    return render_template('admin/edit.html', categories=categories,current_user=current_user)
+
+
+
+
+
 
 @admin_blueprints.route("/category", methods=["GET","POST"])
 @login_required
